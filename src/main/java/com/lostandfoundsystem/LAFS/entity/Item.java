@@ -43,7 +43,7 @@ public class Item {
     @JoinColumn(name = "user_id",referencedColumnName = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "location_id", referencedColumnName = "location_id",nullable = false)
     private LocationDetails locationDetails;
 
@@ -62,6 +62,17 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private Set<ItemTag> itemTags;
+
+    public Item(String itemName, String itemDescription, Category category, ItemStatus itemStatus, Date reportedDate, User user, LocationDetails locationDetails) {
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.category = category;
+        this.itemStatus = itemStatus;
+        this.reportedDate = reportedDate;
+        this.user = user;
+        this.locationDetails = locationDetails;
+    }
+
 
 
 }

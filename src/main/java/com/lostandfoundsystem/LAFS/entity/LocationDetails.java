@@ -16,6 +16,7 @@ public class LocationDetails {
 
     @Id
     @Column(name = "location_id", nullable = false, length = 50)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long locationId;
 
     @Column(name = "place", nullable = false)
@@ -33,7 +34,7 @@ public class LocationDetails {
     @Column(name = "country")
     private String country = "Sri Lanka";
 
-    @OneToMany(mappedBy = "locationDetails")
+    @OneToMany(mappedBy = "locationDetails",cascade = CascadeType.REMOVE)
     private Set<Item> item;
 
 
